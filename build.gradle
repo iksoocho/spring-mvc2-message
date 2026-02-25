@@ -29,6 +29,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web' // webmvc-test가 아니라 'web'이 기본입니다.
 
+	// DevTools (자동 재시작)
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
 	// Lombok
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
