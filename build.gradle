@@ -1,0 +1,47 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.5.10'
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'hello'
+version = '0.0.1-SNAPSHOT'
+description = 'Demo project for Spring Boot'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	// Web & Template Engine
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-web' // webmvc-test가 아니라 'web'이 기본입니다.
+
+	// Lombok
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	// Testing (2026년 표준 설정)
+	// spring-boot-starter-test 하나면 JUnit, AssertJ, Mockito가 모두 포함됩니다.
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	// IntelliJ 2024와의 호환성을 위해 JUnit 5 버전을 명시적으로 고정 (선택 사항이나 추천)
+	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.11.0'
+	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.11.0'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
